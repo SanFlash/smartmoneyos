@@ -1,1 +1,47 @@
-# SmartMoney OS\n\nA dark fintech personal finance dashboard for INR manual transaction tracking. Includes authenticated access, expenses, income, investments, savings, platform and purpose capture, monthly budgets, savings goals, cash-flow summaries and CSV export.\n\n## Stack\n\n- Responsive HTML/CSS/JavaScript frontend\n- Supabase Auth + PostgreSQL REST API\n- PostgreSQL Row Level Security (RLS)\n- Vercel static deployment with Git integration\n\n## Setup\n\n1. Create a Supabase project.\n2. Run `supabase/migrations/0001_initial_schema.sql` in the Supabase SQL Editor.\n3. Deploy this directory on Vercel.\n4. On first visit, enter your Supabase Project URL and **publishable/anon key**. These are stored only in the current browser session.\n5. Create an account and sign in. Configure Supabase Auth Site URL and allowed redirect URLs for your deployed domain.\n\nNever enter a Supabase service-role key. Never store bank passwords, UPI PINs, OTPs or card CVVs. All finance tables enforce `auth.uid() = user_id` using RLS.\n\n## Accounting rules\n\n- Expenses are consumption outflows.\n- Investments and savings are reported separately from expenses.\n- Transfers are excluded from consumption/net-position calculations to avoid double counting.\n- Dashboard figures reflect manually recorded transactions, not verified bank balances or market valuations.\n- This is a personal tracking tool, not regulated financial advice or a payment initiation service.\n
+# SmartMoney OS
+
+A privacy-first, local-first personal finance dashboard for Indian Rupees (INR). No Supabase, server database, account, bank integration, or API keys are required.
+
+## Run locally
+
+1. Clone this repository.
+2. Open the project folder with a local static server (recommended) or deploy the root directory to Vercel.
+3. Open the app in a modern browser. The local IndexedDB database is created automatically.
+
+For local development, for example:
+
+```bash
+python -m http.server 8000
+```
+
+Then open http://localhost:8000.
+
+## Local data and privacy
+
+- All transactions, budgets, and savings goals are stored in the browser's IndexedDB database named `SmartMoneyOS`.
+- No finance records are sent to a backend. The app does not require Supabase credentials or a login.
+- A service worker caches the application shell so it can reopen offline after the first successful visit.
+- Data is isolated to the browser profile and origin on the current device. It does not sync between devices or browsers.
+- Use **Settings → Export full backup (JSON)** before clearing browser data, changing devices, or uninstalling the browser.
+- Use **Settings → Import backup** to restore a previously exported JSON backup.
+- CSV export is available for transactions.
+
+## Features
+
+- Manual transaction entry for expenses, income, investments, savings, and transfers.
+- Captures platform/merchant, purpose, payment method, account, date, recurrence, and notes.
+- Monthly category budgets and savings goals with contribution tracking.
+- Monthly net position, spending breakdown, allocation view, and searchable transaction ledger.
+- Full JSON backup/restore and CSV export.
+- Responsive dark fintech dashboard and offline application-shell caching.
+
+## Accounting rules
+
+- Expenses are consumption outflows.
+- Investments and savings are shown separately from expenses.
+- Transfers are excluded from consumption and net-position calculations to avoid double counting.
+- Dashboard figures reflect manually entered records, not verified bank balances, investment valuations, or payment confirmations.
+
+## Important
+
+This is a personal record-keeping tool, not a bank, payment processor, tax product, or regulated financial adviser. Do not enter bank passwords, UPI PINs, OTPs, card CVVs, or other authentication secrets. Browser-local data is not encrypted by this application; protect your device account and keep backups in a secure location.
