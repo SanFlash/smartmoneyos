@@ -31,6 +31,7 @@ Then open http://localhost:8000.
 - Manual transaction entry for expenses, income, investments, savings, and transfers.
 - Captures platform/merchant, purpose, payment method, account, date, recurrence, and notes.
 - Monthly category budgets and savings goals with contribution tracking.
+- Salary-first expense planner: configurable take-home pay, savings target above ₹9,000, and percentage-based spending envelopes by category. Recorded income overrides the configured salary for that month.
 - Monthly net position, spending breakdown, allocation view, and searchable transaction ledger.
 - Full JSON backup/restore and CSV export.
 - Responsive dark fintech dashboard and offline application-shell caching.
